@@ -15,30 +15,59 @@ body {
   min-height: 100vh;
 }
 
+
 /* ===================
    NAVBAR
 =================== */
 
 .navbar {
   background: #dfdede;
-  color: white;
   padding: 1rem 2rem;
 
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 2rem;
+
+  border-bottom: 1px solid #d1d5db;
 }
 
 .logo {
+  flex-shrink: 0;
   display: flex;
   align-items: center;
 }
 
 .logo img {
-  height: 50px;
+  height: 55px;
   width: auto;
   display: block;
 }
+
+.nav-left {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: #fbbf24;
+}
+
+/* Dropdown */
 
 .dropdown {
   position: relative;
@@ -56,7 +85,7 @@ body {
   border-radius: 10px;
   overflow: hidden;
 
-  box-shadow: 0 10px 25px rgba(0,0,0,.15);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 
   z-index: 1000;
 }
@@ -76,20 +105,26 @@ body {
   display: block;
 }
 
-.nav-links {
-  display: flex;
-  gap: 1.5rem;
-}
+/* Mobile */
 
-.nav-links a {
-  text-decoration: none;
-  color: rgb(0, 0, 0);
-  font-weight: 500;
-  transition: 0.2s;
-}
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
 
-.nav-links a:hover {
-  color: #fbbf24;
+  .nav-left {
+    align-items: center;
+  }
+
+  .nav-links {
+    justify-content: center;
+  }
+
+  .logo img {
+    height: 45px;
+  }
 }
 
 /* ===================
@@ -97,18 +132,31 @@ body {
 =================== */
 
 .hero {
-  text-align: left;
-  padding: 5rem 1.5rem;
   background: white;
+  padding: 1rem 1rem;
 }
 
-.hero h1 {
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+.hero-left {
+  flex: 2;
+}
+
+.hero-left h1 {
   font-size: 3rem;
   margin-bottom: 1rem;
   color: #0b1f3a;
 }
 
-.hero p {
+.hero-left p {
   font-size: 1.1rem;
   color: #6b7280;
   margin-bottom: 2rem;
@@ -130,8 +178,21 @@ body {
   border-color: #2563eb;
 }
 
+.hero-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.hero-image {
+  max-width: 550px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
 /* ===================
-   LEAGUE CARDS
+   QUICK LINKS
 =================== */
 
 .quick-links {
@@ -140,7 +201,7 @@ body {
   padding: 0 1rem;
 
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
 }
 
@@ -149,12 +210,12 @@ body {
   padding: 2rem;
 
   text-align: center;
-  font-weight: 700;
+  font-weight: 500;
 
   border-radius: 12px;
   cursor: pointer;
 
-  box-shadow: 0 2px 8px rgba(0,0,0,.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
   transition: all .25s ease;
 }
 
@@ -162,50 +223,32 @@ body {
   width: 40px;
   height: 40px;
   object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.card-title {
+  font-weight: 700;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,.08);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .08);
 }
 
 /* ===================
-   Footer Cards
+   FEATURED
 =================== */
 
 .featured {
   max-width: 1200px;
   margin: 2rem auto;
   padding: 0 2rem;
-
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 3rem;
 }
 
 .footer-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
-}
-
-.card {
-  background: white;
-  padding: 2rem;
-
-  text-align: center;
-  font-weight: 700;
-
-  border-radius: 12px;
-  cursor: pointer;
-
-  box-shadow: 0 2px 8px rgba(0,0,0,.05);
-  transition: all .25s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,.08);
 }
 
 /* ===================
@@ -225,7 +268,6 @@ body {
 =================== */
 
 @media (max-width: 992px) {
-
   .quick-links {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -251,8 +293,21 @@ body {
     justify-content: center;
   }
 
-  .hero h1 {
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-right {
+    justify-content: center;
+  }
+
+  .hero-left h1 {
     font-size: 2rem;
+  }
+
+  .hero-image {
+    max-width: 350px;
   }
 
   .quick-links,
